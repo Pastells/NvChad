@@ -64,6 +64,7 @@ map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 map("n", "<leader>fr", "<cmd>Telescope resume<CR>", { desc = "telescope resume previous search" })
+map("n", "<leader>fs", "<cmd>Telescope grep_string<CR>", { desc = "telescope search string under cursor" })
 
 map("n", "<leader>th", function()
   require("nvchad.themes").open()
