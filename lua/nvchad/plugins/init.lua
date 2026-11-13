@@ -32,8 +32,8 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
     opts = {
-      indent = { char = "│", highlight = "IblChar" },
-      scope = { char = "│", highlight = "IblScopeChar" },
+      indent = { char = "│", highlight = "IblIndent" },
+      scope = { char = "│", highlight = "IblScope" },
     },
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "blankline")
@@ -138,8 +138,8 @@ return {
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
-        "https://codeberg.org/FelipeLema/cmp-async-path.git"
-      }
+       "https://codeberg.org/FelipeLema/cmp-async-path.git",
+      },
     },
     opts = function()
       return require "nvchad.configs.cmp"
@@ -159,12 +159,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
+    build = ":TSUpdate | TSInstallAll",
     opts = function()
       return require "nvchad.configs.treesitter"
-    end,
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
     end,
   },
 }
