@@ -32,8 +32,13 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
-  callback = function()
-    pcall(vim.treesitter.start)
+  callback = function(args)
+    -- Only take over highlighting when treesitter can actually highlight the
+    -- filetype; otherwise (e.g. gitcommit, diff) the regex syntax goes blank.
+    local lang = vim.treesitter.language.get_lang(args.match)
+    if lang and vim.treesitter.query.get(lang, "highlights") then
+      pcall(vim.treesitter.start, args.buf)
+    end
   end,
 })
 
